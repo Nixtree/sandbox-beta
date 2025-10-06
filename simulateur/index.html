@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="outils">
+      <div id="sable"></div>
+        <img src="iconSable.png" id="grainDeSable">
+        <p id="gDS_txt">- grains de sable</p>
+        <img src="option.png" id="opt_sand">
+      </div> 
+      
+      <div id="opt_sable">
+        <label id="label_sable" for="opt_sable_poid">poid - sable</label>
+        <input type="range" id="opt_sable_poid" min="1" max="20" value="4">
+        <h2 id="opt_number_sand">0.4</h2>
+      </div>
+
+
+      <div id="ecran"></div>
+      <div id="sol"></div>
+
+
+    <script>
+        let ecran = document.getElementById("ecran")
+        let sable = document.getElementById("sable")
+        let opt_sand = document.getElementById("opt_sand")
+        let opt_sable = document.getElementById("opt_sable")
+        let range_sand = document.getElementById("opt_sable_poid")
+        let opt_number_sand = document.getElementById("opt_number_sand")
+        let array = []
+        let mode = "any"
+        let sol = 850
+        let i = 0
+        let poidSand = 0.4
+
+
+        sable.addEventListener("click", () => {
+            mode = "sand"
+        })
+
+                ecran.addEventListener("click", (e) => {
+                    if(mode === "sand"){
+                        i++
+                        let particule = document.createElement("div")
+                        particule.className = "sand"
+                        particule.id = "sand" + i
+                        particule.style.height = 4 + "px"
+                        particule.style.width = 4 + "px"
+                        particule.style.left = e.pageX + "px"
+                        particule.style.top = e.pageY + "px"
+                        particule.style.borderRadius = 100 + "%"
+                        array.push({id:particule.id, type:"sand", x:parseFloat(particule.style.left), y:parseFloat(particule.style.top), vitesse:1})
+                        document.body.appendChild(particule)  
+                    }
+                    
+       
+                })                
+              
+
+        setInterval(() => {
+           array.forEach(element => {
+                if(element.type === "sand"){
+                    if(element.y >= (sol - 4)){
+
+                        element.y = 846
+                        let idELe = document.getElementById(element.id)
+                        idELe.style.top = element.y + "px"
+
+                    }else if(element.y < (sol - 4)){
+
+                            element.y = element.y + (element.vitesse*poidSand)
+                            let idELe = document.getElementById(element.id)
+                            idELe.style.top = element.y + "px"
+                            element.vitesse = element.vitesse + 0.1
+
+                    }
+                }
+            }); 
+        },10)
+            
+let visibilitySand = 0
+        
+opt_sand.addEventListener("click",() => {
+    if(visibilitySand === 0){
+        opt_sable.style.visibility = "visible" 
+        visibilitySand = 1   
+    }
+    else if(visibilitySand === 1){
+        visibilitySand = 0
+        opt_sable.style.visibility = "hidden"    
+    }
+
+})
+
+range_sand.addEventListener("input", () => {
+    opt_number_sand.textContent = range_sand.value / 10
+    poidSand = range_sand.value / 10
+}) 
+
+let on = 1
+
+ecran.addEventListener("mousedown", (e) => {
+    if(on === 1){
+      on = 0
+        if(mode === "sand"){
+        if(e.button === 0){
+            setTimeout(() => {
+                ecran.addEventListener("mousemove", (event) => {
+                    swipe = setInterval(() => {
+
+                        if(mode === "sand"){
+                            i++
+                            let particule = document.createElement("div")
+                            particule.className = "sand"
+                            particule.id = "sand" + i
+                            particule.style.height = 4 + "px"
+                            particule.style.width = 4 + "px"
+                            particule.style.left = event.pageX + "px"
+                            particule.style.top = event.pageY + "px"
+                            particule.style.borderRadius = 100 + "%"
+                            array.push({id:particule.id, type:"sand", x:parseFloat(particule.style.left), y:parseFloat(particule.style.top), vitesse:1})
+                            document.body.appendChild(particule) 
+                            clearInterval(swipe) 
+     
+                        }
+                                                
+                })
+              })
+
+            },400)
+        }
+    }
+    }
+           
+})
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+body{
+    overflow: hidden;
+}
+
+#outils{
+    position: absolute;   
+    height: 1200px;
+    width: 250px;
+    top: -16px;
+    left: -8px;
+    border-right: 2px solid black;
+}#grainDeSable{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 250px;
+    left: 20px;
+}#gDS_txt{
+    position: absolute;
+    top: 245px;
+    left: 75px;
+}#sable{
+    position: absolute;
+    height: 50px;
+    width: 200px;
+    top: 250px;
+    z-index: 2;
+}#opt_sand{
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    top: 250px;
+    left: 200px;
+}
+
+
+#ecran{
+    width: 1720px;
+    height: 1200px;
+    top: -8px;
+    left: 244px;
+    position: absolute;
+    background-color: black;
+    z-index: 0;
+}#sol{
+    width: 1720px;
+    height: 500px;
+    position: absolute;
+    top: 850px;
+    left: 244px;
+    background-color: rgb(78, 73, 73);
+}
+
+.sand{
+    position: absolute;
+    background-color: rgb(255, 217, 0);
+    z-index: 1;
+}
+
+#opt_sable{
+    visibility: hidden;
+    background-color: white;
+    height: 50px;
+    width: 200px;
+    position: absolute;
+    top: 250px;
+    left: 275px;
+    z-index: 2;
+}#label_sable{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}#opt_sable_poid{
+    position: absolute;
+    top: 20px;
+    left: 5px;
+}#opt_number_sand{
+    position: absolute;
+    left: 150px;
+    top: -5px;
+}
